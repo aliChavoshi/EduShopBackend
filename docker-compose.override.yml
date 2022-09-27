@@ -1,8 +1,24 @@
 version: '3.4'
 
 services:
-  web:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+
+  basketdb:
+    container_name: basketdb
+    restart: always
     ports:
-      - "80"
+       - 6379:6379
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+       -  redis-data:/data
+  
+  redis-commander:
+    container_name: redis-commander
+    restart: always
+    environment:
+      - REDIS_HOSTS=local:basketdb:6379
+      - HTTP_USER=root
+      - HTTP_PASSWORD=secret
+    ports:
+      - 8081:8081
+    depends_on:
+      - basketdb
