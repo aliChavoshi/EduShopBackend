@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.ProductEntity;
 using MediatR;
 
 namespace Application.Features.ProductTypes.Queries.GetAll;

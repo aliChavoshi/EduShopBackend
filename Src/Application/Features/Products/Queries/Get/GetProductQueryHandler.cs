@@ -3,6 +3,7 @@ using Application.Dtos.Products;
 using Application.Features.Products.Queries.GetAll;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Entities.ProductEntity;
 using Domain.Exceptions;
 using MediatR;
 

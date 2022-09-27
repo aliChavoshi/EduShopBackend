@@ -2,6 +2,7 @@
 using Application.Contracts.Specification;
 using Application.Wrappers;
 using Domain.Entities;
+using Domain.Entities.ProductEntity;
 
 namespace Application.Features.Products.Queries.GetAll;
 

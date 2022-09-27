@@ -1,6 +1,7 @@
 ﻿using Application.Dtos.Products;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Entities.ProductEntity;
 using Microsoft.Extensions.Configuration;
 
 namespace Application.Common.Mapping.Resolvers;

@@ -1,5 +1,6 @@
 ﻿using Application.Contracts.Specification;
 using Domain.Entities;
+using Domain.Entities.ProductEntity;
 
 namespace Application.Features.ProductBrands.Queries.GetAll;
 

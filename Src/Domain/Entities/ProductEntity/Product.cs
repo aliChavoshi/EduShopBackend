@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Domain.Entities.Base;
+﻿using Domain.Entities.Base;
 
-namespace Domain.Entities;
+namespace Domain.Entities.ProductEntity;
 
 public class Product : BaseAuditableEntity, ICommands
 {

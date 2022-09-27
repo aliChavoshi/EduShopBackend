@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Entities\Base\" />
+    <Folder Include="Entities\BasketEntity\" />
   </ItemGroup>
 
 </Project>

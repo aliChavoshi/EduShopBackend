@@ -1,8 +1,8 @@
 ﻿using Domain.Entities.Base;
 
-namespace Domain.Entities;
+namespace Domain.Entities.ProductEntity;
 
-public class ProductBrand : BaseAuditableEntity,ICommands
+public class ProductType : BaseAuditableEntity,ICommands
 {
     public string Title { get; set; }
     public string Description { get; set; }
