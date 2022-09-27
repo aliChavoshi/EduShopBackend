@@ -18,6 +18,9 @@
     <Folder Include="Dtos\ProductBrands\" />
     <Folder Include="Dtos\ProductTypes\" />
     <Folder Include="Dtos\Products\" />
+    <Folder Include="Features\Basket\Commands\DeleteBasket\" />
+    <Folder Include="Features\Basket\Commands\UpdateBasket\" />
+    <Folder Include="Features\Basket\Queries\GetBasketById\" />
     <Folder Include="Features\ProductBrands\Queries\GetAll\" />
     <Folder Include="Features\Products\Commands\" />
     <Folder Include="Features\Products\Validators\" />
