@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Services\" />
     <Folder Include="Persistence\Configurations\" />
     <Folder Include="Persistence\SeedData\" />
   </ItemGroup>

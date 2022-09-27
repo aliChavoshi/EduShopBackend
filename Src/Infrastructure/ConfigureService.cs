@@ -1,6 +1,8 @@
 ﻿using Application.Contracts;
+using Application.Interfaces;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Context;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +26,7 @@ public static class ConfigureService
             var options = ConfigurationOptions.Parse(configuration.GetConnectionString("Redis"), true);
             return ConnectionMultiplexer.Connect(options);
         });
+        services.AddScoped<IBasketRepository, BasketRepository>();
         // services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         services.AddScoped<IUnitOWork, UnitOWork>();
         return services;
