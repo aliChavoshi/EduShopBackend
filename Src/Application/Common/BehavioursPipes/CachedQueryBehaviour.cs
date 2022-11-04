@@ -20,24 +20,6 @@ public class CachedQueryBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequ
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
-        RequestHandlerDelegate<TResponse> next)
-    {
-        TResponse response;
-        var key = GenerateKey();
-        var cachedResponse = await _cache.GetAsync(key, cancellationToken);
-        if (cachedResponse != null)
-            response = JsonConvert.DeserializeObject<TResponse>(Encoding.Default.GetString(cachedResponse));
-        else
-        {
-            response = await next(); // go to get response
-            var serialized = Encoding.Default.GetBytes(JsonConvert.SerializeObject(response));
-            await CreateNewCache(request, key, cancellationToken, serialized);
-        }
-
-        return response;
-    }
-
     private Task CreateNewCache(TRequest request, string key, CancellationToken cancellationToken, byte[] serialized)
     {
         return _cache.SetAsync(key, serialized,
@@ -56,5 +38,22 @@ public class CachedQueryBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequ
     private string GenerateKey()
     {
         return IdGenerator.GenerateCacheKeyFromRequest(_httpContextAccessor.HttpContext.Request);
+    }
+
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    {
+        TResponse response;
+        var key = GenerateKey();
+        var cachedResponse = await _cache.GetAsync(key, cancellationToken);
+        if (cachedResponse != null)
+            response = JsonConvert.DeserializeObject<TResponse>(Encoding.Default.GetString(cachedResponse));
+        else
+        {
+            response = await next(); // go to get response
+            var serialized = Encoding.Default.GetBytes(JsonConvert.SerializeObject(response));
+            await CreateNewCache(request, key, cancellationToken, serialized);
+        }
+
+        return response;
     }
 }

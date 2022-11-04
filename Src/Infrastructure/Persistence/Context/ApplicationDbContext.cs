@@ -1,19 +1,26 @@
 ﻿using System.Reflection;
 using Domain.Entities;
+using Domain.Entities.Identity;
 using Domain.Entities.ProductEntity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Context;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     }
 
+    //for product
     public DbSet<Product> Products => Set<Product>();
     public DbSet<ProductType> ProductType => Set<ProductType>();
     public DbSet<ProductBrand> ProductBrand => Set<ProductBrand>();
+
+    //for identity
+    public DbSet<User> User => Set<User>();
+    public DbSet<Address> Address => Set<Address>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -23,5 +30,6 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Product>().HasQueryFilter(x => x.IsDelete == false);
         modelBuilder.Entity<ProductBrand>().HasQueryFilter(x => x.IsDelete == false);
         modelBuilder.Entity<ProductType>().HasQueryFilter(x => x.IsDelete == false);
+        modelBuilder.Entity<Address>().HasQueryFilter(x => x.IsDelete == false);
     }
 }

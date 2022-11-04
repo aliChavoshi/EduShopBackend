@@ -1,4 +1,5 @@
 ﻿using Application.Features.Basket.Commands.DeleteBasket;
+using Application.Features.Basket.Commands.DeleteItemFromBasket;
 using Application.Features.Basket.Commands.UpdateBasket;
 using Application.Features.Basket.Queries.GetBasketById;
 using Domain.Entities.BasketEntity;
@@ -27,5 +28,12 @@ public class BasketController : BaseApiController
     public async Task<ActionResult<bool>> DeleteBasket([FromRoute] string basketId, CancellationToken cancellationToken)
     {
         return Ok(await Mediator.Send(new DeleteBasketCommand(basketId), cancellationToken));
+    }
+
+    [HttpDelete("DeleteItem/{basketId}/{id:int}")]
+    public async Task<IActionResult> DeleteItem([FromRoute] string basketId, [FromRoute] int id,
+        CancellationToken cancellationToken)
+    {
+        return Ok(await Mediator.Send(new DeleteItemFromBasketCommand(basketId, id), cancellationToken));
     }
 }
