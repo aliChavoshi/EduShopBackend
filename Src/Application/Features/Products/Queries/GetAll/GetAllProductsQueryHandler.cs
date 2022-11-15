@@ -3,8 +3,10 @@ using Application.Dtos.Products;
 using Application.Wrappers;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Entities.Identity;
 using Domain.Entities.ProductEntity;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 
 namespace Application.Features.Products.Queries.GetAll;
 
@@ -13,7 +15,7 @@ public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, P
     private readonly IUnitOWork _uow;
     private readonly IMapper _mapper;
 
-    public GetAllProductsQueryHandler(IUnitOWork uow, IMapper mapper)
+    public GetAllProductsQueryHandler(IUnitOWork uow, IMapper mapper, UserManager<User> userManager)
     {
         _uow = uow;
         _mapper = mapper;

@@ -88,6 +88,8 @@ public static class ConfigureService
         app.UseRouting();
         //CORS
         app.UseCors("CorsPolicy");
+
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllers();

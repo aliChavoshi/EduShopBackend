@@ -2,6 +2,7 @@
 using Application.Interfaces;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Context;
+using Infrastructure.Security;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,9 +27,11 @@ public static class ConfigureService
             var options = ConfigurationOptions.Parse(configuration.GetConnectionString("Redis"), true);
             return ConnectionMultiplexer.Connect(options);
         });
+        //DI
         services.AddScoped<IBasketRepository, BasketRepository>();
-        // services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         services.AddScoped<IUnitOWork, UnitOWork>();
+        //Identity
+        services.AddIdentityService(configuration);
         return services;
     }
 }

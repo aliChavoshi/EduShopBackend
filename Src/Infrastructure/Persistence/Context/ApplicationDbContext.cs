@@ -20,6 +20,9 @@ public class ApplicationDbContext : IdentityDbContext
 
     //for identity
     public DbSet<User> User => Set<User>();
+    public DbSet<Role> Role => Set<Role>();
+    public DbSet<UserRole> UserRole => Set<UserRole>();
+
     public DbSet<Address> Address => Set<Address>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

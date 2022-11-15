@@ -2,10 +2,7 @@
 
 namespace Domain.Entities.Identity;
 
-public class User : IdentityUser
+public class Role : IdentityRole<string>
 {
-    public string DisplayName { get; set; }
-
-    public List<Address> Addresses { get; set; }
     public ICollection<UserRole> UserRole { get; set; }
 }
