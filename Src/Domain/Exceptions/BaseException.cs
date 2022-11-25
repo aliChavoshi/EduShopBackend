@@ -1,4 +1,6 @@
-﻿namespace Domain.Exceptions;
+﻿using FluentValidation.Results;
+
+namespace Domain.Exceptions;
 
 public class BaseException : Exception
 {
@@ -11,5 +13,10 @@ public class BaseException : Exception
 
     public BaseException(string message) : base(message)
     {
+    }
+
+    public BaseException(IEnumerable<ValidationFailure> validationFailures)
+    {
+        Messages = validationFailures.Select(x => x.ErrorMessage).ToList();
     }
 }

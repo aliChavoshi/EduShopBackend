@@ -5,8 +5,6 @@ VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{6051C943-4AE5-4445-A004-058E80CAB908}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{D0807089-AD71-4B69-A12E-D4EBAD009E35}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Src\Web\Web.csproj", "{FCA3893E-8A83-4971-AF82-37974DF91FD4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{114EBDC9-4DA1-44E1-837F-D5206B29CEBF}"

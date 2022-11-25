@@ -1,4 +1,6 @@
-﻿namespace Domain.Exceptions;
+﻿using FluentValidation.Results;
+
+namespace Domain.Exceptions;
 
 public class ValidationEntityException : BaseException
 {
@@ -12,5 +14,10 @@ public class ValidationEntityException : BaseException
 
     public ValidationEntityException() : base("خطایی رخ داده است لطفا مجدد تلاش کنید ")
     {
+    }
+
+    public ValidationEntityException(IEnumerable<ValidationFailure> validationFailures) : base(validationFailures)
+    {
+        
     }
 }
