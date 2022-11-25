@@ -25,8 +25,8 @@ public static class ConfigureService
                 policy =>
                 {
                     policy.AllowAnyHeader().AllowAnyMethod()
-                        .WithOrigins(configuration["CorsAddress:AddressHttp"],
-                            configuration["CorsAddress:AddressHttps"]);
+                        .WithOrigins(configuration["CorsAddress:AddressHttp"] ?? string.Empty,
+                            configuration["CorsAddress:AddressHttps"] ?? string.Empty);
                 });
         });
         //IHttpContext Accessor
@@ -44,8 +44,8 @@ public static class ConfigureService
             options.InvalidModelStateResponseFactory = actionContext =>
             {
                 var errors = actionContext.ModelState
-                    .Where(e => e.Value.Errors.Count > 0)
-                    .SelectMany(v => v.Value.Errors)
+                    .Where(e => e.Value != null && e.Value.Errors.Count > 0)
+                    .SelectMany(v => v.Value!.Errors)
                     .Select(c => c.ErrorMessage).ToList();
 
                 return new BadRequestObjectResult(new ApiToReturn(400, errors));
@@ -88,7 +88,6 @@ public static class ConfigureService
         app.UseRouting();
         //CORS
         app.UseCors("CorsPolicy");
-
         app.UseAuthentication();
         app.UseAuthorization();
 

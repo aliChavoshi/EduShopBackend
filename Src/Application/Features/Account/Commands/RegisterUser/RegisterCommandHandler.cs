@@ -1,7 +1,9 @@
 ﻿using Application.Common.Mapping;
 using Application.Dtos.Account;
+using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities.Identity;
+using Domain.Enums;
 using Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -25,11 +27,13 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, UserDto>
 {
     private readonly IMapper _mapper;
     private readonly UserManager<User> _userManager;
+    private readonly ITokenService _tokenService;
 
-    public RegisterCommandHandler(UserManager<User> userManager, IMapper mapper)
+    public RegisterCommandHandler(UserManager<User> userManager, IMapper mapper, ITokenService tokenService)
     {
         _userManager = userManager;
         _mapper = mapper;
+        _tokenService = tokenService;
     }
 
     public async Task<UserDto> Handle(RegisterCommand request, CancellationToken cancellationToken)
@@ -41,8 +45,11 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, UserDto>
         var result = await _userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded) throw new BadRequestEntityException(result.Errors.FirstOrDefault()!.Description);
 
+        var roleResult = await _userManager.AddToRoleAsync(user, RoleType.User.ToString());
+        if (!roleResult.Succeeded) throw new BadRequestEntityException(roleResult.Errors.FirstOrDefault()!.Description);
+
         var mapUser = _mapper.Map<UserDto>(user);
-        mapUser.Token = "";
+        mapUser.Token = await _tokenService.CreateToken(user);
         return mapUser;
     }
 }

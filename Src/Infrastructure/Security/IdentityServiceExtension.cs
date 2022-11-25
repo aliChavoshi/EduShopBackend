@@ -1,9 +1,14 @@
 ﻿using Domain.Entities.Identity;
 using Infrastructure.Persistence.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using System.Text;
+using Domain.Exceptions;
 
 namespace Infrastructure.Security;
 
@@ -23,13 +28,31 @@ public static class IdentityServiceExtension
 
         services.Configure(ConfigureOptionsIdentity());
         //policy
-        services.AddAuthorization();
+        // services.AddAuthorization();
         //token setting
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
                 options.SaveToken = true;
+                options.TokenValidationParameters = OptionsTokenValidationParameters(configuration);
+                options.Events = JwtOptionsEvents();
             });
+    }
+
+    private static TokenValidationParameters OptionsTokenValidationParameters(IConfiguration configuration)
+    {
+        return new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey =
+                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWTConfiguration:Key"] ?? string.Empty)),
+            ValidateIssuer = true,
+            ValidIssuer = configuration["JWTConfiguration:Issuer"],
+            ValidateAudience = Convert.ToBoolean(configuration["JWTConfiguration:Audience"]),
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.Zero,
+            RequireExpirationTime = true
+        };
     }
 
     private static Action<IdentityOptions> ConfigureOptionsIdentity()
@@ -53,6 +76,36 @@ public static class IdentityServiceExtension
             options.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
             // options.User.RequireUniqueEmail = true;
+        };
+    }
+
+    private static JwtBearerEvents JwtOptionsEvents()
+    {
+        return new JwtBearerEvents
+        {
+            OnAuthenticationFailed = c =>
+            {
+                c.NoResult();
+                c.Response.StatusCode = 500;
+                c.Response.ContentType = "application/json";
+                return c.Response.WriteAsync("مشکلی  در سمت سرور رخ داده است لطفا مجدد تلاش کنید");
+            },
+            OnChallenge = context =>
+            {
+                context.HandleResponse();
+                context.Response.StatusCode = 401;
+                context.Response.ContentType = "application/json";
+                var result = JsonConvert.SerializeObject(new ApiToReturn(401, "شما اهراز هویت نشده اید"));
+                return context.Response.WriteAsync(result);
+            },
+            OnForbidden = context =>
+            {
+                context.Response.StatusCode = 403;
+                context.Response.ContentType = "application/json";
+                var result = JsonConvert.SerializeObject(new ApiToReturn(403,
+                    "شما به این بخش دسترسی ندارید لطفا ابتدا وارد سایت شوید"));
+                return context.Response.WriteAsync(result);
+            }
         };
     }
 }
