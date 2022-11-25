@@ -15,9 +15,12 @@
     <Folder Include="Common\BehavioursPipes\" />
     <Folder Include="Contracts\Specification\" />
     <Folder Include="Dtos\Common\" />
+    <Folder Include="Dtos\Account\" />
     <Folder Include="Dtos\ProductBrands\" />
     <Folder Include="Dtos\ProductTypes\" />
     <Folder Include="Dtos\Products\" />
+    <Folder Include="Features\Account\Commands\RegisterUser\" />
+    <Folder Include="Features\Account\Queries\LoginUser\" />
     <Folder Include="Features\Basket\Commands\DeleteBasket\" />
     <Folder Include="Features\Basket\Commands\DeleteItemFromBasket\" />
     <Folder Include="Features\Basket\Commands\UpdateBasket\" />
@@ -37,6 +40,8 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
