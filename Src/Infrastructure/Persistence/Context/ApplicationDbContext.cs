@@ -1,10 +1,9 @@
-﻿using System.Reflection;
-using Domain.Entities;
-using Domain.Entities.Identity;
+﻿using Domain.Entities.Identity;
 using Domain.Entities.ProductEntity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Infrastructure.Persistence.Context;
 

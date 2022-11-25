@@ -1,7 +1,6 @@
-﻿using System.Net;
+﻿using Domain.Exceptions;
+using System.Net;
 using System.Text.Json;
-using Domain.Exceptions;
-using Microsoft.AspNetCore.Authentication;
 using Exception = System.Exception;
 
 namespace Web.Middleware;

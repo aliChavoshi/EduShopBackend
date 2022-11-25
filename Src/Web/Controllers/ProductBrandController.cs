@@ -1,5 +1,4 @@
 ﻿using Application.Features.ProductBrands.Queries.GetAll;
-using Domain.Entities;
 using Domain.Entities.ProductEntity;
 using Microsoft.AspNetCore.Mvc;
 using Web.Common;

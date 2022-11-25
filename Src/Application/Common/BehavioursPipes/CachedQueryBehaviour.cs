@@ -1,10 +1,10 @@
-﻿using System.Text;
-using Application.Contracts;
+﻿using Application.Contracts;
 using Application.Helpers;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace Application.Common.BehavioursPipes;
 

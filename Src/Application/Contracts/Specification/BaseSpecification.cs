@@ -1,5 +1,5 @@
-﻿using System.Linq.Expressions;
-using Domain.Entities.Base;
+﻿using Domain.Entities.Base;
+using System.Linq.Expressions;
 
 namespace Application.Contracts.Specification;
 

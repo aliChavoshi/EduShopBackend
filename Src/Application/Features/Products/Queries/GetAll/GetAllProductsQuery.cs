@@ -1,8 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using Application.Contracts;
+﻿using Application.Contracts;
 using Application.Dtos.Products;
 using Application.Wrappers;
-using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.Products.Queries.GetAll;

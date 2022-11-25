@@ -2,7 +2,6 @@
 using Application.Dtos.Products;
 using Application.Wrappers;
 using AutoMapper;
-using Domain.Entities;
 using Domain.Entities.Identity;
 using Domain.Entities.ProductEntity;
 using MediatR;

@@ -1,6 +1,6 @@
-﻿using System.Linq.Expressions;
-using Application.Contracts.Specification;
+﻿using Application.Contracts.Specification;
 using Domain.Entities.Base;
+using System.Linq.Expressions;
 
 namespace Application.Contracts;
 

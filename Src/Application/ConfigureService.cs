@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-using Application.Common.BehavioursPipes;
+﻿using Application.Common.BehavioursPipes;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Application;
 

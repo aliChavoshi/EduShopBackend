@@ -12,6 +12,6 @@ public class BadRequestEntityException : BaseException
 
     public BadRequestEntityException() : base("خطایی رخ داده است لطفا مجدد تلاش کنید")
     {
-        
+
     }
 }

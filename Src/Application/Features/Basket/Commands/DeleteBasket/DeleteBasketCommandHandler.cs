@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Application.Features.Basket.Commands.DeleteBasket;
 
-public class DeleteBasketCommandHandler : IRequestHandler<DeleteBasketCommand,bool>
+public class DeleteBasketCommandHandler : IRequestHandler<DeleteBasketCommand, bool>
 {
     private readonly IBasketRepository _basketRepository;
 

@@ -1,11 +1,11 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 namespace Infrastructure.Services;
@@ -16,11 +16,11 @@ public class TokenService : ITokenService
     private readonly UserManager<User> _userManager;
     private readonly SymmetricSecurityKey _key;
 
-    public TokenService(IConfiguration configuration, UserManager<User> userManager, SymmetricSecurityKey key)
+    public TokenService(IConfiguration configuration, UserManager<User> userManager)
     {
         _configuration = configuration;
         _userManager = userManager;
-        _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWTConfiguration:Key"]));
+        _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWTConfiguration:Key"] ?? string.Empty));
     }
 
     public async Task<string> CreateToken(User user)
@@ -35,7 +35,7 @@ public class TokenService : ITokenService
         };
         //add roles to claims
         var roles = await _userManager.GetRolesAsync(user);
-        if (roles != null && roles.Any())
+        if (roles.Any())
             claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
         //create token
         var cred = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);

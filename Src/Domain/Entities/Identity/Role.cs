@@ -4,5 +4,5 @@ namespace Domain.Entities.Identity;
 
 public class Role : IdentityRole<string>
 {
-    public ICollection<UserRole> UserRole { get; set; }
+    public ICollection<UserRole> UserRole { get; set; } = new List<UserRole>();
 }

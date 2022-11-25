@@ -1,5 +1,4 @@
 ﻿using Application.Contracts;
-using Domain.Entities;
 using Domain.Entities.ProductEntity;
 using MediatR;
 

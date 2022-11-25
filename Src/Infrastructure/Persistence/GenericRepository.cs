@@ -1,9 +1,9 @@
-﻿using System.Linq.Expressions;
-using Application.Contracts;
+﻿using Application.Contracts;
 using Application.Contracts.Specification;
 using Domain.Entities.Base;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Infrastructure.Persistence;
 

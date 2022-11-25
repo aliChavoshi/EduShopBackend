@@ -1,8 +1,7 @@
-﻿using System.Linq.Expressions;
-using Application.Contracts.Specification;
+﻿using Application.Contracts.Specification;
 using Application.Wrappers;
-using Domain.Entities;
 using Domain.Entities.ProductEntity;
+using System.Linq.Expressions;
 
 namespace Application.Features.Products.Queries.GetAll;
 

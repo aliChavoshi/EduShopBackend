@@ -14,7 +14,7 @@ public static class ConfigureService
     {
         // Add services to the container.
         builder.Services.AddControllers();
-        ApiBehaviorOptions(builder);
+        //ApiBehaviorOptions(builder);
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
@@ -34,23 +34,6 @@ public static class ConfigureService
         //cache memory
         builder.Services.AddDistributedMemoryCache();
         return builder.Services;
-    }
-
-    private static void ApiBehaviorOptions(WebApplicationBuilder builder)
-    {
-        //TODO check this
-        builder.Services.Configure<ApiBehaviorOptions>(options =>
-        {
-            options.InvalidModelStateResponseFactory = actionContext =>
-            {
-                var errors = actionContext.ModelState
-                    .Where(e => e.Value != null && e.Value.Errors.Count > 0)
-                    .SelectMany(v => v.Value!.Errors)
-                    .Select(c => c.ErrorMessage).ToList();
-
-                return new BadRequestObjectResult(new ApiToReturn(400, errors));
-            };
-        });
     }
 
     public static async Task<IApplicationBuilder> AddWebAppService(this WebApplication app)
@@ -95,5 +78,21 @@ public static class ConfigureService
 
         await app.RunAsync();
         return app;
+    }
+    private static void ApiBehaviorOptions(WebApplicationBuilder builder)
+    {
+        //TODO check this
+        builder.Services.Configure<ApiBehaviorOptions>(options =>
+        {
+            options.InvalidModelStateResponseFactory = actionContext =>
+            {
+                var errors = actionContext.ModelState
+                    .Where(e => e.Value != null && e.Value.Errors.Count > 0)
+                    .SelectMany(v => v.Value!.Errors)
+                    .Select(c => c.ErrorMessage).ToList();
+
+                return new BadRequestObjectResult(new ApiToReturn(400, errors));
+            };
+        });
     }
 }

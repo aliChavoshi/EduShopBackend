@@ -19,7 +19,9 @@ public class RegisterCommand : IRequest<UserDto>, IMapFrom<User>
 
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<RegisterCommand, User>();
+        profile.CreateMap<RegisterCommand, User>()
+            .ForMember(x => x.UserName,
+                c => c.MapFrom(v => v.PhoneNumber));
     }
 }
 

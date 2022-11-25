@@ -1,6 +1,5 @@
 ﻿using Application.Interfaces;
 using Domain.Entities.BasketEntity;
-using Newtonsoft.Json;
 using StackExchange.Redis;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 

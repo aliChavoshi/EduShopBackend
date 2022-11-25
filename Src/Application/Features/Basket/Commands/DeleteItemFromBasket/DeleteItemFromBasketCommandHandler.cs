@@ -1,6 +1,4 @@
-﻿using Application.Contracts;
-using Application.Interfaces;
-using AutoMapper;
+﻿using Application.Interfaces;
 using Domain.Entities.BasketEntity;
 using Domain.Exceptions;
 using MediatR;
