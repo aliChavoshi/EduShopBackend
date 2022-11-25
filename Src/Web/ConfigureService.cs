@@ -1,9 +1,12 @@
-﻿using Domain.Exceptions;
+﻿using Application.Contracts;
+using Domain.Exceptions;
 using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.SeedData;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Web.Extensions;
 using Web.Middleware;
+using Web.Services;
 
 namespace Web;
 
@@ -17,7 +20,7 @@ public static class ConfigureService
         //ApiBehaviorOptions(builder);
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerDocumentation();
         //CORS Policy
         builder.Services.AddCors(opt =>
         {
@@ -30,6 +33,7 @@ public static class ConfigureService
                 });
         });
         //IHttpContext Accessor
+        builder.Services.AddSingleton<ICurrentUserService, CurrentUserUserService>();
         builder.Services.AddHttpContextAccessor();
         //cache memory
         builder.Services.AddDistributedMemoryCache();
@@ -61,8 +65,7 @@ public static class ConfigureService
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
-            app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerDocumentation();
         }
 
         //access to wwwroot
@@ -79,6 +82,7 @@ public static class ConfigureService
         await app.RunAsync();
         return app;
     }
+
     private static void ApiBehaviorOptions(WebApplicationBuilder builder)
     {
         //TODO check this
