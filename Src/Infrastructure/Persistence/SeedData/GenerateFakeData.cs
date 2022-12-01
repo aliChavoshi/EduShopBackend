@@ -97,7 +97,7 @@ public class GenerateFakeData
                 Description =
                     "Fugiat ad culpa ad dolor est tempor esse deserunt amet duis. Amet nulla esse voluptate non voluptate. Minim irure ea tempor et mollit aute consectetur. Esse amet commodo ipsum magna. Enim non nostrud minim dolore minim deserunt consequat deserunt deserunt sint amet. Ex aliquip nisi ullamco qui.\r\n",
                 Summary = "Velit ea do est et et irure magna. Fugiat sit proident do irure nisi cupidatat",
-                PictureUrl = "",
+                PictureUrl = "image.jpeg",
                 Price = 15000,
                 Title = "product 1",
                 ProductBrandId = 1,
@@ -108,7 +108,7 @@ public class GenerateFakeData
                 Description =
                     "Fugiat ad culpa ad dolor est tempor esse deserunt amet duis. Amet nulla esse voluptate non voluptate. Minim irure ea tempor et mollit aute consectetur. Esse amet commodo ipsum magna. Enim non nostrud minim dolore minim deserunt consequat deserunt deserunt sint amet. Ex aliquip nisi ullamco qui.\r\n",
                 Summary = "Velit ea do est et et irure magna. Fugiat sit proident do irure nisi cupidatat",
-                PictureUrl = "",
+                PictureUrl = "image.jpeg",
                 Price = 15000,
                 Title = "product 2",
                 ProductBrandId = 1,
@@ -119,7 +119,7 @@ public class GenerateFakeData
                 Description =
                     "Fugiat ad culpa ad dolor est tempor esse deserunt amet duis. Amet nulla esse voluptate non voluptate. Minim irure ea tempor et mollit aute consectetur. Esse amet commodo ipsum magna. Enim non nostrud minim dolore minim deserunt consequat deserunt deserunt sint amet. Ex aliquip nisi ullamco qui.\r\n",
                 Summary = "Velit ea do est et et irure magna. Fugiat sit proident do irure nisi cupidatat",
-                PictureUrl = "",
+                PictureUrl = "image.jpeg",
                 Price = 15000,
                 Title = "product 3",
                 ProductBrandId = 1,
@@ -130,7 +130,7 @@ public class GenerateFakeData
                 Description =
                     "Fugiat ad culpa ad dolor est tempor esse deserunt amet duis. Amet nulla esse voluptate non voluptate. Minim irure ea tempor et mollit aute consectetur. Esse amet commodo ipsum magna. Enim non nostrud minim dolore minim deserunt consequat deserunt deserunt sint amet. Ex aliquip nisi ullamco qui.\r\n",
                 Summary = "Velit ea do est et et irure magna. Fugiat sit proident do irure nisi cupidatat",
-                PictureUrl = "",
+                PictureUrl = "image.jpeg",
                 Price = 15000,
                 Title = "product 1",
                 ProductBrandId = 1,
@@ -141,7 +141,7 @@ public class GenerateFakeData
                 Description =
                     "Fugiat ad culpa ad dolor est tempor esse deserunt amet duis. Amet nulla esse voluptate non voluptate. Minim irure ea tempor et mollit aute consectetur. Esse amet commodo ipsum magna. Enim non nostrud minim dolore minim deserunt consequat deserunt deserunt sint amet. Ex aliquip nisi ullamco qui.\r\n",
                 Summary = "Velit ea do est et et irure magna. Fugiat sit proident do irure nisi cupidatat",
-                PictureUrl = "",
+                PictureUrl = "image.jpeg",
                 Price = 15000,
                 Title = "product 1",
                 ProductBrandId = 1,
@@ -152,7 +152,7 @@ public class GenerateFakeData
                 Description =
                     "Fugiat ad culpa ad dolor est tempor esse deserunt amet duis. Amet nulla esse voluptate non voluptate. Minim irure ea tempor et mollit aute consectetur. Esse amet commodo ipsum magna. Enim non nostrud minim dolore minim deserunt consequat deserunt deserunt sint amet. Ex aliquip nisi ullamco qui.\r\n",
                 Summary = "Velit ea do est et et irure magna. Fugiat sit proident do irure nisi cupidatat",
-                PictureUrl = "",
+                PictureUrl = "image.jpeg",
                 Price = 15000,
                 Title = "product 1",
                 ProductBrandId = 1,
@@ -163,7 +163,7 @@ public class GenerateFakeData
                 Description =
                     "Fugiat ad culpa ad dolor est tempor esse deserunt amet duis. Amet nulla esse voluptate non voluptate. Minim irure ea tempor et mollit aute consectetur. Esse amet commodo ipsum magna. Enim non nostrud minim dolore minim deserunt consequat deserunt deserunt sint amet. Ex aliquip nisi ullamco qui.\r\n",
                 Summary = "Velit ea do est et et irure magna. Fugiat sit proident do irure nisi cupidatat",
-                PictureUrl = "",
+                PictureUrl = "image.jpeg",
                 Price = 15000,
                 Title = "product 1",
                 ProductBrandId = 1,
@@ -174,7 +174,7 @@ public class GenerateFakeData
                 Description =
                     "Fugiat ad culpa ad dolor est tempor esse deserunt amet duis. Amet nulla esse voluptate non voluptate. Minim irure ea tempor et mollit aute consectetur. Esse amet commodo ipsum magna. Enim non nostrud minim dolore minim deserunt consequat deserunt deserunt sint amet. Ex aliquip nisi ullamco qui.\r\n",
                 Summary = "Velit ea do est et et irure magna. Fugiat sit proident do irure nisi cupidatat",
-                PictureUrl = "",
+                PictureUrl = "image.jpeg",
                 Price = 15000,
                 Title = "product 1",
                 ProductBrandId = 1,
@@ -185,7 +185,7 @@ public class GenerateFakeData
                 Description =
                     "Fugiat ad culpa ad dolor est tempor esse deserunt amet duis. Amet nulla esse voluptate non voluptate. Minim irure ea tempor et mollit aute consectetur. Esse amet commodo ipsum magna. Enim non nostrud minim dolore minim deserunt consequat deserunt deserunt sint amet. Ex aliquip nisi ullamco qui.\r\n",
                 Summary = "Velit ea do est et et irure magna. Fugiat sit proident do irure nisi cupidatat",
-                PictureUrl = "",
+                PictureUrl = "image.jpeg",
                 Price = 15000,
                 Title = "product 1",
                 ProductBrandId = 1,
@@ -196,7 +196,7 @@ public class GenerateFakeData
                 Description =
                     "Fugiat ad culpa ad dolor est tempor esse deserunt amet duis. Amet nulla esse voluptate non voluptate. Minim irure ea tempor et mollit aute consectetur. Esse amet commodo ipsum magna. Enim non nostrud minim dolore minim deserunt consequat deserunt deserunt sint amet. Ex aliquip nisi ullamco qui.\r\n",
                 Summary = "Velit ea do est et et irure magna. Fugiat sit proident do irure nisi cupidatat",
-                PictureUrl = "",
+                PictureUrl = "image.jpeg",
                 Price = 15000,
                 Title = "product 1",
                 ProductBrandId = 1,
