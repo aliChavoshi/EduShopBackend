@@ -16,5 +16,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.Property(x => x.Description).HasMaxLength(500);
         builder.Property(x => x.Title).HasMaxLength(100);
         builder.Property(x => x.Summary).HasMaxLength(100);
+        builder.HasOne(x => x.User).WithMany().HasForeignKey(x => x.CreatedBy);
+        builder.HasOne(x => x.User).WithMany().HasForeignKey(x => x.LastModifiedBy);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Domain.Entities.Base;
+using Domain.Entities.Identity;
 
 namespace Domain.Entities.ProductEntity;
 
@@ -21,4 +22,5 @@ public class Product : BaseAuditableEntity, ICommands
 
     public ProductType ProductType { get; set; }
     public ProductBrand ProductBrand { get; set; }
+    public User User { get; set; }
 }

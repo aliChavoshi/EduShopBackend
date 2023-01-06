@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Domain.Entities.Order;
 
 namespace Infrastructure.Persistence.Context;
 
@@ -26,6 +27,11 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, string, Identi
 
     public DbSet<Address> Address => Set<Address>();
 
+    //order
+    public DbSet<Order> Order => Set<Order>();
+    public DbSet<OrderItem> OrderItem => Set<OrderItem>();
+    public DbSet<DeliveryMethod> DeliveryMethod => Set<DeliveryMethod>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -35,5 +41,8 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, string, Identi
         modelBuilder.Entity<ProductBrand>().HasQueryFilter(x => x.IsDelete == false);
         modelBuilder.Entity<ProductType>().HasQueryFilter(x => x.IsDelete == false);
         modelBuilder.Entity<Address>().HasQueryFilter(x => x.IsDelete == false);
+        modelBuilder.Entity<Order>().HasQueryFilter(x => x.IsDelete == false);
+        modelBuilder.Entity<DeliveryMethod>().HasQueryFilter(x => x.IsDelete == false);
+        modelBuilder.Entity<OrderItem>().HasQueryFilter(x => x.IsDelete == false);
     }
 }

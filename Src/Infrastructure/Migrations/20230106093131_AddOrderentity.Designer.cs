@@ -4,6 +4,7 @@ using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230106093131_AddOrderentity")]
+    partial class AddOrderentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -232,12 +235,6 @@ namespace Infrastructure.Migrations
                     b.Property<string>("BuyerPhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("DeliveryMethodId")
                         .HasColumnType("int");
 
@@ -246,12 +243,6 @@ namespace Infrastructure.Migrations
 
                     b.Property<bool>("IsFinally")
                         .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("OrderStatus")
                         .HasColumnType("int");
@@ -268,8 +259,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DeliveryMethodId");
-
-                    b.HasIndex("LastModifiedBy");
 
                     b.ToTable("Order");
                 });
@@ -349,8 +338,8 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -365,8 +354,8 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("LastModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("PictureUrl")
                         .IsRequired()
@@ -392,8 +381,6 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LastModifiedBy");
-
                     b.HasIndex("ProductBrandId");
 
                     b.HasIndex("ProductTypeId");
@@ -412,8 +399,8 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -428,8 +415,8 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("LastModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("Summary")
                         .HasMaxLength(100)
@@ -440,8 +427,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LastModifiedBy");
 
                     b.ToTable("ProductBrand");
                 });
@@ -457,8 +442,8 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -473,8 +458,8 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("LastModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("Summary")
                         .HasMaxLength(100)
@@ -485,8 +470,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LastModifiedBy");
 
                     b.ToTable("ProductType");
                 });
@@ -620,10 +603,6 @@ namespace Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("DeliveryMethodId");
 
-                    b.HasOne("Domain.Entities.Identity.User", "User")
-                        .WithMany()
-                        .HasForeignKey("LastModifiedBy");
-
                     b.OwnsOne("Domain.Entities.Order.ShipToAddress", "ShipToAddress", b1 =>
                         {
                             b1.Property<int>("OrderId")
@@ -661,8 +640,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("DeliveryMethod");
 
                     b.Navigation("ShipToAddress");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Entities.Order.OrderItem", b =>
@@ -716,10 +693,6 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.ProductEntity.Product", b =>
                 {
-                    b.HasOne("Domain.Entities.Identity.User", "User")
-                        .WithMany()
-                        .HasForeignKey("LastModifiedBy");
-
                     b.HasOne("Domain.Entities.ProductEntity.ProductBrand", "ProductBrand")
                         .WithMany()
                         .HasForeignKey("ProductBrandId")
@@ -735,26 +708,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("ProductBrand");
 
                     b.Navigation("ProductType");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ProductEntity.ProductBrand", b =>
-                {
-                    b.HasOne("Domain.Entities.Identity.User", "User")
-                        .WithMany()
-                        .HasForeignKey("LastModifiedBy");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ProductEntity.ProductType", b =>
-                {
-                    b.HasOne("Domain.Entities.Identity.User", "User")
-                        .WithMany()
-                        .HasForeignKey("LastModifiedBy");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
