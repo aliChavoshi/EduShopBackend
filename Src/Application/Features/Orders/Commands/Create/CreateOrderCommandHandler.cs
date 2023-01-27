@@ -50,8 +50,8 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Ord
         var deliveryMethod = await GetDeliveryMethod(request, cancellationToken);
         //3. connect get-way => success,link,auth
         var amount = (int)basket.CalculateOriginalPrice();
-        //TODO callback
-        var payment = await new Payment(amount).PaymentRequest("فاکتور فروش", "", "", request.BuyerPhoneNumber);
+        var payment = await new Payment(amount).PaymentRequest("فاکتور فروش", _configuration["Order:CallBack"], "",
+            request.BuyerPhoneNumber);
         //4. reducer => event handler
         //5. create order
         var result = await CreateOrder(request, cancellationToken, basket, deliveryMethod, payment);
@@ -68,21 +68,28 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Ord
         return model;
     }
 
-    private async Task<DeliveryMethod> GetDeliveryMethod(CreateOrderCommand request, CancellationToken cancellationToken)
+    private async Task<DeliveryMethod> GetDeliveryMethod(CreateOrderCommand request,
+        CancellationToken cancellationToken)
     {
         var deliveryMethod = await _unitOWork.Repository<DeliveryMethod>()
             .GetByIdAsync(request.DeliveryMethodId, cancellationToken);
         return deliveryMethod;
     }
 
-    private async Task<Order> CreateOrder(CreateOrderCommand request, CancellationToken cancellationToken, CustomerBasket basket,
+    private async Task<Order> CreateOrder(CreateOrderCommand request, CancellationToken cancellationToken,
+        CustomerBasket basket,
         DeliveryMethod deliveryMethod, PaymentRequestResponse payment)
     {
         var orderItems = new List<OrderItem>();
         foreach (var item in basket.Items)
         {
             var itemOrder = new ProductItemOrdered(item.Id, item.Product, item.Brand, item.Type, item.PictureUrl);
-            orderItems.Add(new OrderItem(itemOrder, item.Price, item.Quantity));
+            orderItems.Add(new OrderItem()
+            {
+                ItemOrdered = itemOrder,
+                Price = item.Price,
+                Quantity = item.Quantity
+            });
         }
 
         var order = new Order()

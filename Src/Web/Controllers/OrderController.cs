@@ -1,5 +1,6 @@
 ﻿using Application.Dtos.OrderDto;
 using Application.Features.Orders.Commands.Create;
+using Application.Features.Orders.Commands.Verify;
 using Application.Features.Orders.Queries.GetDeliveryMethodById;
 using Application.Features.Orders.Queries.GetDeliveryMethods;
 using Application.Features.Orders.Queries.GetOrderByIdForUser;
@@ -50,9 +51,8 @@ public class OrderController : BaseApiController
 
     [HttpGet("Verify")]
     [AllowAnonymous]
-    //TODO
     public async Task<IActionResult> Verify(string authority, string status, CancellationToken cancellationToken)
     {
-        return Redirect("");
+        return Redirect(await Mediator.Send(new VerifyCommand(authority, status), cancellationToken));
     }
 }
