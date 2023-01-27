@@ -18,7 +18,7 @@ public class Order : BaseAuditableEntity
     public Portal Portal { get; set; }
     public PortalType PortalType { get; set; } = PortalType.Zarrinpal;
     public bool IsFinally { get; set; } = false; // default is false after order change to true or false
-    public string Authority { get; set; } //TODO
+    public string Authority { get; set; } 
 
     public decimal GetOriginalTotal()
     {
