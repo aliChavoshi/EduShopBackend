@@ -29,6 +29,8 @@
     <Folder Include="Features\Basket\Commands\UpdateBasket\" />
     <Folder Include="Features\Basket\Queries\GetBasketById\" />
     <Folder Include="Features\Orders\Commands\Create\" />
+    <Folder Include="Features\Orders\Queries\GetOrdersForUser\" />
+    <Folder Include="Features\Orders\Queries\GetOrderByIdForUser\" />
     <Folder Include="Features\ProductBrands\Queries\GetAll\" />
     <Folder Include="Features\Products\Commands\" />
     <Folder Include="Features\Products\Validators\" />

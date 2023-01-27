@@ -53,6 +53,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return await _dbSet.AnyAsync(expression, cancellationToken);
     }
 
+    public IQueryable<T> Where(Expression<Func<T, bool>> expression)
+    {
+        return _dbSet.Where(expression);
+    }
+
     public async Task<bool> AnyAsync(CancellationToken cancellationToken)
     {
         return await _dbSet.AnyAsync(cancellationToken);

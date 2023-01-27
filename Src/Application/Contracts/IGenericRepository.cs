@@ -10,12 +10,11 @@ public interface IGenericRepository<T> where T : BaseEntity
     Task<IReadOnlyList<T>> GetAllAsync(CancellationToken cancellationToken);
     Task<T> AddAsync(T entity, CancellationToken cancellationToken);
     Task<T> UpdateAsync(T entity);
-
     Task Delete(T entity, CancellationToken cancellationToken);
 
     //x=>x.Id
     Task<bool> AnyAsync(Expression<Func<T, bool>> expression, CancellationToken cancellationToken);
-
+    IQueryable<T> Where(Expression<Func<T, bool>> expression);
     Task<bool> AnyAsync(CancellationToken cancellationToken);
 
     //Specification
