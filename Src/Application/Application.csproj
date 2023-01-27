@@ -16,6 +16,7 @@
     <Folder Include="Contracts\Specification\" />
     <Folder Include="Dtos\Common\" />
     <Folder Include="Dtos\Account\" />
+    <Folder Include="Dtos\OrderDto\" />
     <Folder Include="Dtos\ProductBrands\" />
     <Folder Include="Dtos\ProductTypes\" />
     <Folder Include="Dtos\Products\" />
@@ -27,6 +28,7 @@
     <Folder Include="Features\Basket\Commands\DeleteItemFromBasket\" />
     <Folder Include="Features\Basket\Commands\UpdateBasket\" />
     <Folder Include="Features\Basket\Queries\GetBasketById\" />
+    <Folder Include="Features\Orders\Commands\Create\" />
     <Folder Include="Features\ProductBrands\Queries\GetAll\" />
     <Folder Include="Features\Products\Commands\" />
     <Folder Include="Features\Products\Validators\" />

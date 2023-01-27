@@ -12,7 +12,6 @@ public class Order : BaseAuditableEntity
 
     //order status
     public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
-
     public string TrackingCode { get; set; }
 
     //portal
