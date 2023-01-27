@@ -1,6 +1,7 @@
 ﻿using Application.Contracts.Specification;
 using Domain.Entities.Base;
 using System.Linq.Expressions;
+using Domain.Entities.Order;
 
 namespace Application.Contracts;
 
@@ -21,6 +22,7 @@ public interface IGenericRepository<T> where T : BaseEntity
     Task<T> GetEntityWithSpec(ISpecification<T> spec, CancellationToken cancellationToken);
     Task<IReadOnlyList<T>> ListAsyncSpec(ISpecification<T> spec, CancellationToken cancellationToken);
     Task<int> CountAsyncSpec(ISpecification<T> spec, CancellationToken cancellationToken);
+    Task<List<T>> ToListAsync(CancellationToken cancellationToken);
 }
 //pagination => count , get all , take , skip 
 //sort => name , title , price 

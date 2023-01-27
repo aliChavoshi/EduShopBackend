@@ -1,7 +1,10 @@
 ﻿using Application.Dtos.OrderDto;
 using Application.Features.Orders.Commands.Create;
+using Application.Features.Orders.Queries.GetDeliveryMethodById;
+using Application.Features.Orders.Queries.GetDeliveryMethods;
 using Application.Features.Orders.Queries.GetOrderByIdForUser;
 using Application.Features.Orders.Queries.GetOrdersForUser;
+using Domain.Entities.Order;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Common;
@@ -31,15 +34,18 @@ public class OrderController : BaseApiController
     }
 
     [HttpGet("GetDeliveryMethods")]
-    public async Task<IActionResult> GetDeliveryMethods(CancellationToken cancellationToken)
+    [AllowAnonymous]
+    public async Task<ActionResult<List<DeliveryMethod>>> GetDeliveryMethods(CancellationToken cancellationToken)
     {
-        return Ok();
+        return Ok(await Mediator.Send(new GetDeliveryMethodsQuery(), cancellationToken));
     }
 
     [HttpGet("GetDeliveryMethodById/{id:int}")]
-    public async Task<IActionResult> GetDeliveryMethodById([FromRoute] int id, CancellationToken cancellationToken)
+    [AllowAnonymous]
+    public async Task<ActionResult<DeliveryMethod>> GetDeliveryMethodById([FromRoute] int id,
+        CancellationToken cancellationToken)
     {
-        return Ok();
+        return Ok(await Mediator.Send(new GetDeliveryMethodByIdQuery(id), cancellationToken));
     }
 
     [HttpGet("Verify")]

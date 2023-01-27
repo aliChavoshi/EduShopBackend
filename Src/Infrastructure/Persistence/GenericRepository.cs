@@ -78,6 +78,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return await ApplySpecification(spec).CountAsync(cancellationToken);
     }
 
+    public async Task<List<T>> ToListAsync(CancellationToken cancellationToken)
+    {
+        return await _dbSet.ToListAsync(cancellationToken);
+    }
+
     private IQueryable<T> ApplySpecification(ISpecification<T> spec)
     {
         return SpecificationEvaluator<T>.GetQuery(_dbSet.AsQueryable(), spec);
