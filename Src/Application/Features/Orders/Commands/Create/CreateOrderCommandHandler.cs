@@ -49,8 +49,8 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Ord
         //2. delivery method
         var deliveryMethod = await GetDeliveryMethod(request, cancellationToken);
         //3. connect get-way => success,link,auth
-        var amount = (int)basket.CalculateOriginalPrice();
-        var payment = await new Payment(amount).PaymentRequest("فاکتور فروش", _configuration["Order:CallBack"], "",
+        var amount = (int)(basket.CalculateOriginalPrice() + deliveryMethod.Price);
+        var payment = await new Payment(amount).PaymentRequest("فاکتور فروش", _configuration["Order:CallBack"], "a.chavoshi@iskra-iran.com",
             request.BuyerPhoneNumber);
         //4. reducer => event handler
         //5. create order
@@ -60,6 +60,7 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Ord
         //7. create portal
         var portal = new Portal(result.Id, result.PortalType, PaymentDataStatus.Pending, amount, null);
         await _unitOWork.Repository<Portal>().AddAsync(portal, cancellationToken);
+        await _unitOWork.Save(cancellationToken);
         //8. create response,Order Dto
         var model = _mapper.Map<OrderDto>(result);
         //9. link=> 3.link

@@ -49,7 +49,7 @@ public class OrderController : BaseApiController
         return Ok(await Mediator.Send(new GetDeliveryMethodByIdQuery(id), cancellationToken));
     }
 
-    [HttpGet("Verify")]
+    [HttpGet("verify")]
     [AllowAnonymous]
     public async Task<IActionResult> Verify(string authority, string status, CancellationToken cancellationToken)
     {
