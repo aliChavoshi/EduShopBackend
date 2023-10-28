@@ -29,6 +29,7 @@ public class GetOrdersForUserQueryHandler : IRequestHandler<GetOrdersForUserQuer
         var orders = await _uow.Repository<Order>()
             .Where(x => x.CreatedBy == _currentUserService.UserId)
             .Include(x=>x.DeliveryMethod)
+            .Include(x=>x.OrderItems)
             .OrderByDescending(x=>x.Created)
             .ToListAsync(cancellationToken);
         return _mapper.Map<List<OrderDto>>(orders);
